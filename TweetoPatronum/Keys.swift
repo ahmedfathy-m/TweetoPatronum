@@ -8,8 +8,8 @@
 import Foundation
 
 struct Keys {
-    static let apiKey = ""
-    static let secretKey = ""
+    static let apiKey = "pb6hDac0Qc9JrjAuxRGIW3iWv"
+    static let secretKey = "CuODeOPI8fsdWDeDAnefteOJ21KEj0S7Nqd6Y71h7XwQ9C1WTk"
     static let bearerToken = "AAAAAAAAAAAAAAAAAAAAAJLOdQEAAAAA9Oiph4Zpq0DS1Np%2FV%2FdablcXGa8%3D6O2Huwt6ZIHMDhONvowrTfYPPQ6h6rbuJqXqgLzDNvYRPxy0Ty"
     static let currentToken = "X1RwQTQxVDh2Q2lTMV9NdUEzOVptWGhoV0hfaVhWZlhraW5jZWpLTjI2bjRwOjE2NTYzNjMxNDU0NjI6MTowOmF0OjE"
 }

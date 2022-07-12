@@ -11,8 +11,8 @@ import SwiftCrypto
 
 
 class OAuth {
-    let consumerKey = "pb6hDac0Qc9JrjAuxRGIW3iWv"
-    private let consumerSecret = "CuODeOPI8fsdWDeDAnefteOJ21KEj0S7Nqd6Y71h7XwQ9C1WTk"
+    let consumerKey = Keys.apiKey
+    private let consumerSecret = Keys.secretKey
     private let oauthSignatureMethod = "HMAC-SHA1"
     private let OAuthTimeStamp = NSTimeIntervalSince1970
     private let oauthVersion = "1.0"
