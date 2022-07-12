@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "A3C9CD27-CE38-413C-9067-E70EF94888BB"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04442D9A-7D77-44EF-94F9-7FE0A96D62CC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TweetElementCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5"
+            endingLineNumber = "5"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E27F754-91CC-471F-9B74-7EF160241386"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TwitterHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "getTweets(ids:token:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8E27F754-91CC-471F-9B74-7EF160241386 - 7fed52025da6414a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static TweetoPatronum.TwitterHandler.getTweets(ids: Swift.String..., token: Swift.String) async throws -&gt; Swift.Optional&lt;TweetoPatronum.Timeline&gt;"
+                  moduleName = "TweetoPatronum"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedfathy/Desktop/Development%20Learning/TweetoPatronum/TweetoPatronum/TwitterHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "4428">
+               </Location>
+               <Location
+                  uuid = "8E27F754-91CC-471F-9B74-7EF160241386 - 7fed52025da6414a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static TweetoPatronum.TwitterHandler.getTweets(ids: Swift.String..., token: Swift.String) async throws -&gt; Swift.Optional&lt;TweetoPatronum.Timeline&gt;"
+                  moduleName = "TweetoPatronum"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedfathy/Desktop/Development%20Learning/TweetoPatronum/TweetoPatronum/TwitterHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "4547">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A598031B-ABAF-4DEA-82BB-A44A2C3BF63A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TwitterHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "getTweets(ids:token:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E449F0ED-5BA8-4C25-B7B8-187E7DF4DB62"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TwitterHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "getTweets(ids:token:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E449F0ED-5BA8-4C25-B7B8-187E7DF4DB62 - 7fed52025da6414a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static TweetoPatronum.TwitterHandler.getTweets(ids: Swift.String..., token: Swift.String) async throws -&gt; Swift.Optional&lt;TweetoPatronum.Timeline&gt;"
+                  moduleName = "TweetoPatronum"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedfathy/Desktop/Development%20Learning/TweetoPatronum/TweetoPatronum/TwitterHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "4392">
+               </Location>
+               <Location
+                  uuid = "E449F0ED-5BA8-4C25-B7B8-187E7DF4DB62 - 7fed52025da6414a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static TweetoPatronum.TwitterHandler.getTweets(ids: Swift.String..., token: Swift.String) async throws -&gt; Swift.Optional&lt;TweetoPatronum.Timeline&gt;"
+                  moduleName = "TweetoPatronum"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ahmedfathy/Desktop/Development%20Learning/TweetoPatronum/TweetoPatronum/TwitterHandler.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "4511">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A29E1731-F258-47BC-8C26-C6D464B8E0CA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TwitterHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "getTweets(ids:token:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA8C4457-7B69-4C2E-B1B3-B94B4843798E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TwitterHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "getTweets(ids:token:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98F3CC43-9708-4A90-83BE-471A36D8B468"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/TwitterHandler.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "getTweets(ids:token:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B4C0FF25-2356-468C-83A8-001D89855D3A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TweetoPatronum/Timeline View [View]/TweetElementCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "fillTweetCell(index:timeline:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

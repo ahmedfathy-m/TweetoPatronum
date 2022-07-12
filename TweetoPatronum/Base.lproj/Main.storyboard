@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nZ9-21-4CG">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Messages-->
+        <scene sceneID="DhI-Ai-IxG">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lz2-oH-fNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="M59-Kn-8qM" userLabel="Messages" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VQl-d8-acA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Jkp-Or-Wt3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Direct Messages" image="message.fill" catalog="system" id="9Qj-0a-RBe"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1839" y="806"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="lDH-UM-d0a">
+            <objects>
+                <tableViewController id="QV9-iJ-drl" customClass="TimelineViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="exo-My-Xh5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="yMy-HP-Wfl">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yMy-HP-Wfl" id="2so-nH-APD">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QV9-iJ-drl" id="CO0-1n-Zkn"/>
+                            <outlet property="delegate" destination="QV9-iJ-drl" id="XMF-po-LzJ"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="9yZ-h3-4KK"/>
+                    <navigationItem key="navigationItem" id="68u-Fv-ggt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e4O-43-pb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3274" y="806"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="79i-5v-D7M">
+            <objects>
+                <viewController id="pC2-xQ-Qqa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ev-vh-FCW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="CIS-d6-P8k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="Tzv-0v-Vog"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ft0-oO-sgc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4029" y="806"/>
+        </scene>
+        <!--Twitter Tab Controller-->
+        <scene sceneID="4Vq-1z-Obq">
+            <objects>
+                <tabBarController id="0Zx-O2-lxe" customClass="TwitterTabController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3x8-Kq-2Ye"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0zI-Au-J92">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="QV9-iJ-drl" kind="relationship" relationship="viewControllers" id="Tz4-Wm-YS8"/>
+                        <segue destination="eeX-W1-Qtg" kind="relationship" relationship="viewControllers" id="VMJ-jd-RSm"/>
+                        <segue destination="M59-Kn-8qM" kind="relationship" relationship="viewControllers" id="kT7-7I-TNa"/>
+                        <segue destination="pC2-xQ-Qqa" kind="relationship" relationship="viewControllers" id="3NQ-zw-PUs"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Brd-Oo-2Pj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3080" y="80"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zAI-KA-mLe">
+            <objects>
+                <navigationController id="nZ9-21-4CG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="1Tj-uB-MNI"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jIF-mv-LRA">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hYL-L0-wtr" kind="relationship" relationship="rootViewController" id="x0B-TU-Jjy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eF1-kf-lar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457" y="80"/>
+        </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="4eJ-T9-QLr">
+            <objects>
+                <viewController id="hYL-L0-wtr" customClass="AuthViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RXC-Pg-9my">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-Hb-HKk">
+                                <rect key="frame" x="133.5" y="223" width="147" height="31"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="loginTwitter">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="tinted" title="Sign in with Twitter"/>
+                                <connections>
+                                    <action selector="loginAction:" destination="hYL-L0-wtr" eventType="touchUpInside" id="SS2-I5-sqz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9ze-Om-D8B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a1Z-Hb-HKk" firstAttribute="top" secondItem="9ze-Om-D8B" secondAttribute="top" constant="135" id="2gc-WI-3eN"/>
+                            <constraint firstItem="a1Z-Hb-HKk" firstAttribute="centerX" secondItem="RXC-Pg-9my" secondAttribute="centerX" id="Y2C-j3-mk7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mdJ-Pk-76C"/>
+                    <connections>
+                        <segue destination="gqq-Qa-XaY" kind="show" identifier="authorizeID" id="ZXc-sr-hRc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Nj-op-bF3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257.9710144927537" y="79.6875"/>
+        </scene>
+        <!--Auth Web View Controller-->
+        <scene sceneID="NLr-in-jsT">
+            <objects>
+                <viewController id="gqq-Qa-XaY" customClass="AuthWebViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Aq-pa-1qz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zw3-Ba-wKL">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W48-My-TSg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zw3-Ba-wKL" firstAttribute="leading" secondItem="W48-My-TSg" secondAttribute="leading" id="DUp-8G-PW6"/>
+                            <constraint firstAttribute="trailing" secondItem="Zw3-Ba-wKL" secondAttribute="trailing" id="g8Q-HX-D5j"/>
+                            <constraint firstItem="Zw3-Ba-wKL" firstAttribute="top" secondItem="W48-My-TSg" secondAttribute="top" id="iLH-bt-eWi"/>
+                            <constraint firstAttribute="bottom" secondItem="Zw3-Ba-wKL" secondAttribute="bottom" id="zZP-Yd-85R"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tXa-ne-yPP"/>
+                    <connections>
+                        <outlet property="AuthWebView" destination="Zw3-Ba-wKL" id="i9l-bZ-Ycr"/>
+                        <segue destination="OhP-It-IcL" kind="unwind" identifier="returnToLogin" unwindAction="unwindToMenuWithSegue:" id="5FC-9P-TEY"/>
+                        <segue destination="0Zx-O2-lxe" kind="show" identifier="goToApp" id="C3y-dO-PUz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3PY-Oy-BOP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="OhP-It-IcL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2044.9275362318842" y="79.6875"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="0vy-9K-aaH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcm-tT-FNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="eeX-W1-Qtg" userLabel="Notifications" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pf6-df-kEF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="uc2-aT-JOD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="bell.fill" catalog="system" id="fpq-bq-8si"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2571" y="806"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bell.fill" catalog="system" width="128" height="124"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="loginTwitter" width="158" height="28"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
