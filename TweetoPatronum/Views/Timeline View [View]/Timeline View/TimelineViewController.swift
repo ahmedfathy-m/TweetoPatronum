@@ -8,12 +8,13 @@
 import UIKit
 
 class TimelineViewController: UITableViewController {
-    var oauth: OAuth?
-    var timeline: Timeline?
-    let currentToken = Keys.currentToken
+    private var oauth: OAuth2?
     
-    lazy var viewModel = {
-        TimelineViewModel(oauth: oauth ?? OAuth())
+    lazy var viewModel: TimelineViewModel = {
+        guard let tabbar = tabBarController as? TwitterTabController else {
+            fatalError("Handler wasn't initalized")
+        }
+        return TimelineViewModel(handler: tabbar.handler)
     }()
     
     func initViewModel(){
@@ -30,11 +31,6 @@ class TimelineViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.register(TweetElementCell.nib(), forCellReuseIdentifier: TweetElementCell.identifier)
-        
-
-        let tabbar = tabBarController as? TwitterTabController
-        self.oauth = tabbar?.oauth
-        
         initViewModel()
         
 

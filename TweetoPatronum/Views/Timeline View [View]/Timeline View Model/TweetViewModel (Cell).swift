@@ -5,7 +5,7 @@
 //  Created by Ahmed Fathy on 25/06/2022.
 //
 
-import Foundation
+import UIKit
 
 struct TweetViewModel{
     var displayedAuthor:String?
@@ -29,4 +29,6 @@ struct TweetViewModel{
     var quotedAvatar:String?
     var isQuotedAuthorVerified:Bool?
     var isQuotedAuthorPrivate:Bool?
+    
+    var tweetAlignment:NSTextAlignment
 }

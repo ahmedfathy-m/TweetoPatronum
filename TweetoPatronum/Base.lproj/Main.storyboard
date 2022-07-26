@@ -11,7 +11,6 @@
         <!--Messages-->
         <scene sceneID="DhI-Ai-IxG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lz2-oH-fNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="M59-Kn-8qM" userLabel="Messages" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VQl-d8-acA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -21,6 +20,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Direct Messages" image="message.fill" catalog="system" id="9Qj-0a-RBe"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lz2-oH-fNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1839" y="806"/>
         </scene>
@@ -54,21 +54,34 @@
             </objects>
             <point key="canvasLocation" x="3274" y="806"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="79i-5v-D7M">
+        <!--Me-->
+        <scene sceneID="mpl-Jj-eRM">
             <objects>
-                <viewController id="pC2-xQ-Qqa" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6ev-vh-FCW">
+                <tableViewController id="IC0-vJ-G38" customClass="UserViewController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tdi-f9-6H6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="CIS-d6-P8k"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="Tzv-0v-Vog"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ft0-oO-sgc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellMe" id="FNZ-vp-BU8">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FNZ-vp-BU8" id="GN5-l2-w0L">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IC0-vJ-G38" id="Edt-LE-H0r"/>
+                            <outlet property="delegate" destination="IC0-vJ-G38" id="WJz-41-oZj"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Me" image="person.fill" catalog="system" id="U89-Qg-iyP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XDf-7q-fAI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4029" y="806"/>
+            <point key="canvasLocation" x="4213" y="806"/>
         </scene>
         <!--Twitter Tab Controller-->
         <scene sceneID="4Vq-1z-Obq">
@@ -84,17 +97,17 @@
                         <segue destination="QV9-iJ-drl" kind="relationship" relationship="viewControllers" id="Tz4-Wm-YS8"/>
                         <segue destination="eeX-W1-Qtg" kind="relationship" relationship="viewControllers" id="VMJ-jd-RSm"/>
                         <segue destination="M59-Kn-8qM" kind="relationship" relationship="viewControllers" id="kT7-7I-TNa"/>
-                        <segue destination="pC2-xQ-Qqa" kind="relationship" relationship="viewControllers" id="3NQ-zw-PUs"/>
+                        <segue destination="IC0-vJ-G38" kind="relationship" relationship="viewControllers" id="gwS-eP-Iq1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Brd-Oo-2Pj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3080" y="80"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Patronum Navigation Controller-->
         <scene sceneID="zAI-KA-mLe">
             <objects>
-                <navigationController id="nZ9-21-4CG" sceneMemberID="viewController">
+                <navigationController id="nZ9-21-4CG" customClass="PatronumNavigationController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="1Tj-uB-MNI"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jIF-mv-LRA">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -125,6 +138,7 @@
                                 <buttonConfiguration key="configuration" style="tinted" title="Sign in with Twitter"/>
                                 <connections>
                                     <action selector="loginAction:" destination="hYL-L0-wtr" eventType="touchUpInside" id="SS2-I5-sqz"/>
+                                    <segue destination="gqq-Qa-XaY" kind="show" id="OL1-J0-a4P"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,9 +150,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mdJ-Pk-76C"/>
-                    <connections>
-                        <segue destination="gqq-Qa-XaY" kind="show" identifier="authorizeID" id="ZXc-sr-hRc"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Nj-op-bF3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -185,7 +196,6 @@
         <!--Notifications-->
         <scene sceneID="0vy-9K-aaH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcm-tT-FNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="eeX-W1-Qtg" userLabel="Notifications" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pf6-df-kEF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -195,6 +205,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Notifications" image="bell.fill" catalog="system" id="fpq-bq-8si"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kcm-tT-FNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2571" y="806"/>
         </scene>

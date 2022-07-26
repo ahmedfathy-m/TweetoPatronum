@@ -70,6 +70,7 @@ struct TweetData: Codable{
     let id: String
     let author_id: String?
     let text: String
+    let lang: String
     let public_metrics:TweetMetrics
     let attachments: Attachments?
     let referenced_tweets: [ReferncedTweet]?

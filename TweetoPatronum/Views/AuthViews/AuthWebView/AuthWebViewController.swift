@@ -11,36 +11,27 @@ import WebKit
 class AuthWebViewController: UIViewController {
     @IBOutlet weak var AuthWebView: WKWebView!
     
-    var oauth: OAuth?
+    var oauth: OAuth2 {
+        guard let navCon = navigationController as? PatronumNavigationController else {
+            fatalError("Some Shit 2")
+        }
+        return navCon.oauth
+    }
     
     lazy var viewModel = {
-        AuthWebViewModel(oauth: oauth!)
+        AuthWebViewModel(oauth: oauth)
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         AuthWebView.navigationDelegate = self
-        Task.init {
-            viewModel.authorizeUser(webView:&AuthWebView)
-        }
-    }
-    
-//    override func viewDidDisappear(_ animated: Bool) {
-//        Task.init {
-//            try await viewModel.requestAccess()
-//        }
-//    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextView = segue.destination as? TwitterTabController
-        nextView?.oauth = oauth!
+        oauth.authorize(using: &AuthWebView)
     }
     
 }
 
 extension AuthWebViewController:WKNavigationDelegate{
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        print(webView.url)
         if (viewModel.verifyAuth(webView: webView) == true){
             Task.init {
                 try await viewModel.requestAccess()

@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 
 class TimelineViewModel {
-    var oauth:OAuth
-    lazy var handler = {
-        TwitterHandler(oauth: self.oauth)
-    }()
+    let handler: TwitterHandler
     var timeline: Timeline?
     var includedTweetsWithQuotesIDs = String()
     var reloadTableView: (() -> Void)?
@@ -22,32 +19,30 @@ class TimelineViewModel {
         }
     }
     
-    init(oauth:OAuth) {
-        self.oauth = oauth
+    init(handler:TwitterHandler) {
+        self.handler = handler
     }
     
     func getTimeline(){
         Task.init {
             do{
-//                var model = try await TwitterHandler.getUserTimelineWithID(id:"1425224156426162177",token:Keys.currentToken)
-                var model = try await handler.getCurrentUserTimeline()
+                let user = try await handler.fetchMyUser()
+                var model = try await handler.getCurrentUserTimeline(currentUserID: user.data.id)
                 includedTweetsWithQuotesIDs = ""
-                guard let includedTweets = model?.includes.tweets else {return}
+                guard let includedTweets = model.includes.tweets else {return}
                 for tweet in includedTweets {
                     if let tweetReference = tweet.referenced_tweets?[0], tweetReference.type == "quoted" {
                         (includedTweetsWithQuotesIDs.isEmpty) ? includedTweetsWithQuotesIDs.append(tweetReference.id) : includedTweetsWithQuotesIDs.append(",\(tweetReference.id)")
                     }
                 }
-                
-//                let appendedModel = try await TwitterHandler.getTweets(ids: includedTweetsWithQuotesIDs, token: Keys.currentToken)
                 let appendedModel = try await handler.getMultipleTweets(ids: includedTweetsWithQuotesIDs)
-                guard let appendedData = appendedModel?.data else { return }
-                guard let appendedUsers = appendedModel?.includes.users else { return  }
+                let appendedData = appendedModel.data
+                let appendedUsers = appendedModel.includes.users
                 for tweet in appendedData{
-                    model?.includes.tweets?.append(tweet)
+                    model.includes.tweets?.append(tweet)
                 }
                 for user in appendedUsers {
-                    model?.includes.users.append(user)
+                    model.includes.users.append(user)
                 }
                 
                 getHome(using: model)
@@ -108,14 +103,13 @@ class TimelineViewModel {
             doesContainQuote = false
         }
         
-        
         let displayedAuthor = (isDisplayedTweetRetweeted) ? includedTweetAuthor?.name : userData?.name
         let displayedHandle = (isDisplayedTweetRetweeted) ? "@\(includedTweetAuthor?.username ?? "*ERROR*")" : "@\(userData?.username ?? "*ERROR*")"
         let displayedAvatar = (isDisplayedTweetRetweeted) ? includedTweetAuthor?.profile_image_url : userData?.profile_image_url
         let displayedTweet = (isDisplayedTweetRetweeted) ? includedTweet?.text : tweetData?.text
         let isDisplayedAuthorVerified = (isDisplayedTweetRetweeted) ? includedTweetAuthor?.verified : userData?.verified
         let isDisplayedAuthorPrivate = (isDisplayedTweetRetweeted) ? includedTweetAuthor?.protected : userData?.protected
-        let retweetedBy = (isDisplayedTweetRetweeted) ? includedTweetAuthor?.name : nil
+        let retweetedBy = (isDisplayedTweetRetweeted) ? userData?.name : nil
         
         let retweetCount = tweetData?.public_metrics.retweet_count
         let likeCount = tweetData?.public_metrics.like_count
@@ -140,7 +134,9 @@ class TimelineViewModel {
         let isQuotedAuthorVerified = (doesContainQuote) ? quotedUser?.verified : false
         let isQuotedAuthorPrivate = (doesContainQuote) ? quotedUser?.protected : false
         
-        let TweetModel = TweetViewModel(displayedAuthor: displayedAuthor,
+        let tweetTextAlignment: NSTextAlignment = (tweetData!.lang == "ar") ? .right : .left
+        print("lang: \(tweetData!.lang)")
+        let tweetModel = TweetViewModel(displayedAuthor: displayedAuthor,
                                         displayedAvatar: displayedAvatar,
                                         displayedHandle: displayedHandle,
                                         displayedTweet: displayedTweet,
@@ -157,7 +153,8 @@ class TimelineViewModel {
                                         quotedTweet: quotedTweetText,
                                         quotedAvatar: quotedAvatar,
                                         isQuotedAuthorVerified: isQuotedAuthorVerified,
-                                        isQuotedAuthorPrivate: isQuotedAuthorPrivate)
-        return TweetModel
+                                        isQuotedAuthorPrivate: isQuotedAuthorPrivate,
+                                        tweetAlignment: tweetTextAlignment)
+        return tweetModel
     }
 }
