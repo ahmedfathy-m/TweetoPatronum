@@ -52,7 +52,7 @@ struct Meta: Codable {
     let result_count: Int
     let newest_id: String
     let oldest_id: String
-    let next_token: String
+    let next_token: String?
 }
 
 struct TweetMetrics: Codable {
@@ -79,5 +79,19 @@ struct TweetData: Codable{
 struct ReferncedTweet:Codable {
     let type: String
     let id:String
+}
+
+struct ProfileHeader:Codable {
+    let size600x200: TwitterHeaderImage
+    
+    enum CodingKeys:String,CodingKey{
+        case size600x200 = "600x200"
+    }
+}
+
+struct TwitterHeaderImage:Codable {
+    let h:Int
+    let w:Int
+    let url:String
 }
 

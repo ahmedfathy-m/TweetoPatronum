@@ -12,7 +12,9 @@ class OAuth2 {
     let clientID: String
     let callbackURL: String
     var oAuthToken: OAuthToken? = nil
+    var revokeStatus: RevokeStatus = RevokeStatus()
     fileprivate var authCode = ""
+    fileprivate var validUntil: Int? = nil
 
     init(id: String, callback: String) {
         self.clientID = id
@@ -30,6 +32,7 @@ class OAuth2 {
     }
     
     func refreshAccessToken() async throws {
+        print("refreshingToken")
         guard let refreshToken = oAuthToken?.refreshToken else {
             fatalError("No Token Found")
         }
@@ -49,12 +52,24 @@ class OAuth2 {
         self.authCode = code
     }
     
-    func authorizeRequest(request: inout URLRequest) {
+    func updateTokenValidity(with validityCounter: Int){
+        self.validUntil = validityCounter
+    }
+    
+    func authorizeRequest(request: inout URLRequest) async throws {
         //Reminder: add check for expiry to trigger refresh Token
-        guard let accessToken = oAuthToken?.accessToken else {
-            fatalError("No Token Found")
+        if Int(Date.now.timeIntervalSince1970) < validUntil ?? 0 {
+            guard let accessToken = oAuthToken?.accessToken else {
+                fatalError("No Token Found")
+            }
+            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        } else {
+            try await refreshAccessToken()
+            guard let accessToken = oAuthToken?.accessToken else {
+                fatalError("No Token Found")
+            }
+            request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
     }
     
     private func handleResponse(_ endPoint:OAuth2EndPoint) async throws{
@@ -65,8 +80,10 @@ class OAuth2 {
                 fatalError("No Response from Server")
             }
             if httpResponse.statusCode == 200 {
-                print(String(data: response.0, encoding: .utf8))
-                oAuthToken = nil
+                revokeStatus = try JSONDecoder().decode(RevokeStatus.self, from: response.0)
+                print(revokeStatus.revoked)
+//                oAuthToken = nil
+                validUntil = nil
             } else {
                 fatalError("Error Code:\(httpResponse.statusCode)")
             }
@@ -77,9 +94,11 @@ class OAuth2 {
             }
             if httpResponse.statusCode == 200 {
                 oAuthToken = try? JSONDecoder().decode(OAuthToken.self, from: response.0)
-                print(oAuthToken?.accessToken)
+                validUntil = oAuthToken!.validFor + Int(Date.now.timeIntervalSince1970)
+                UserDefaults.standard.set(response.0, forKey: "AuthCredentials")
+                UserDefaults.standard.set(validUntil, forKey: "Token Valid Until")
             } else {
-                fatalError("Error Code:\(httpResponse.statusCode)")
+                throw OAuth2Error.authError
             }
         case .authorize: print("Got Called")
         }
@@ -102,4 +121,8 @@ struct OAuthToken: Decodable {
         case scope
         case refreshToken = "refresh_token"
     }
+}
+
+struct RevokeStatus:Decodable {
+    var revoked: Bool = false
 }

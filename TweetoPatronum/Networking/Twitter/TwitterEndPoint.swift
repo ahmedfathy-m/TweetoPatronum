@@ -16,6 +16,9 @@ enum TwitterEndPoint {
     case fetchTweet(_ id:String)
     case fetchMultipleTweets(_ ids:String)
     case fetchTimeline(_ id:String)
+    case search(_ query: TwitterQuery)
+    case fetchUserTweets(_ id:String)
+    case fetchUserHeader(_ id:String)
     
     private var targetURL:URLComponents? {
         switch self {
@@ -29,6 +32,12 @@ enum TwitterEndPoint {
             return URLComponents (string: "\(baseURL)/users/\(id)/timelines/reverse_chronological")
         case .fetchMultipleTweets(let ids):
             return URLComponents(string: "\(baseURL)/tweets?ids=\(ids)")
+        case .search:
+            return URLComponents(string: "\(baseURL)/tweets/search/recent")
+        case .fetchUserTweets(let id):
+            return URLComponents(string: "\(baseURL)/users/\(id)/tweets")
+        case .fetchUserHeader:
+            return URLComponents(string: "https://api.twitter.com/1.1/users/profile_banner.json")
         }
     }
     
@@ -44,6 +53,16 @@ enum TwitterEndPoint {
             return multiTweetParams
         case .fetchTimeline:
             return multiTweetParams
+        case .search(let query):
+            var searchParam = multiTweetParams
+            searchParam["query"] = query.searchQuery
+            return searchParam
+        case .fetchUserTweets(_):
+            var userTweetParam = multiTweetParams
+            userTweetParam["exclude"] = "replies"
+            return userTweetParam
+        case .fetchUserHeader(let id):
+            return ["user_id":id]
         }
     }
     
@@ -56,18 +75,7 @@ enum TwitterEndPoint {
     }
     
     var request: URLRequest {
-        switch self {
-        case .fetchUser:
-            return createRequest(targetURL, method: .GET, queryParams: query)
-        case .fetchMyUser:
-            return createRequest(targetURL, method: .GET, queryParams: query)
-        case .fetchTweet:
-            return createRequest(targetURL, method: .GET, queryParams: query)
-        case .fetchMultipleTweets:
-            return createRequest(targetURL, method: .GET, queryParams: query)
-        case .fetchTimeline:
-            return createRequest(targetURL, method: .GET, queryParams: query)
-        }
+        return createRequest(targetURL, method: .GET, queryParams: query)
     }
     
     private func createRequest(_ targetURL: URLComponents?, method:HTTPMethod, _ header: [String:String] = [:],queryParams: [String:Any] = [:],_ bodyParams: [String:String] = [:]) -> URLRequest{

@@ -19,11 +19,7 @@ class TimelineViewController: UITableViewController {
     
     func initViewModel(){
         viewModel.getTimeline()
-        viewModel.reloadTableView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
-        }
+        didUpdateDataModel()
     }
     
    
@@ -32,6 +28,7 @@ class TimelineViewController: UITableViewController {
         // Do any additional setup after loading the view.
         tableView.register(TweetElementCell.nib(), forCellReuseIdentifier: TweetElementCell.identifier)
         initViewModel()
+        viewModel.delegate = self
         
 
         
@@ -64,5 +61,13 @@ class TimelineViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+}
+
+extension TimelineViewController: ViewModelDelegate{
+    func didUpdateDataModel() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 

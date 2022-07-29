@@ -35,7 +35,9 @@ extension AuthWebViewController:WKNavigationDelegate{
         if (viewModel.verifyAuth(webView: webView) == true){
             Task.init {
                 try await viewModel.requestAccess()
-                self.performSegue(withIdentifier: "goToApp", sender: self)
+                let tcIdentifier = "TwitterTabController"
+                let targetTC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: tcIdentifier) as! TwitterTabController
+                self.navigationController?.pushViewController(targetTC, animated: true)
             }
         }else if (viewModel.verifyAuth(webView: webView) == false) {
             navigationController?.popViewController(animated: true)

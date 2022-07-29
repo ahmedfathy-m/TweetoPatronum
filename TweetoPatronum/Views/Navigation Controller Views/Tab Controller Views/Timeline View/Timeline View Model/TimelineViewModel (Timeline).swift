@@ -5,17 +5,17 @@
 //  Created by Ahmed Fathy on 24/06/2022.
 //
 
-import Foundation
 import UIKit
 
 class TimelineViewModel {
     let handler: TwitterHandler
     var timeline: Timeline?
+    
+    weak var delegate: ViewModelDelegate? = nil
     var includedTweetsWithQuotesIDs = String()
-    var reloadTableView: (() -> Void)?
     var tweetModels = [TweetViewModel](){
         didSet{
-            reloadTableView?()
+            delegate?.didUpdateDataModel()
         }
     }
     
@@ -23,32 +23,58 @@ class TimelineViewModel {
         self.handler = handler
     }
     
+    fileprivate func presentAlert(with statusCode:Int) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "ERROR \(statusCode)", message: "Return To Home Screen", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Return", style: .default, handler: { action in
+                self.returnToHomeScreen()
+            }))
+            self.delegate?.present(alert, animated: true)
+        }
+    }
+    
+    fileprivate func returnToHomeScreen(){
+        DispatchQueue.main.async {
+            let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as! AuthViewController
+            self.delegate?.navigationController?.setViewControllers([loginVC], animated: true)
+            self.delegate?.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
     func getTimeline(){
+
         Task.init {
-            do{
-                let user = try await handler.fetchMyUser()
-                var model = try await handler.getCurrentUserTimeline(currentUserID: user.data.id)
-                includedTweetsWithQuotesIDs = ""
-                guard let includedTweets = model.includes.tweets else {return}
-                for tweet in includedTweets {
-                    if let tweetReference = tweet.referenced_tweets?[0], tweetReference.type == "quoted" {
-                        (includedTweetsWithQuotesIDs.isEmpty) ? includedTweetsWithQuotesIDs.append(tweetReference.id) : includedTweetsWithQuotesIDs.append(",\(tweetReference.id)")
-                    }
-                }
-                let appendedModel = try await handler.getMultipleTweets(ids: includedTweetsWithQuotesIDs)
-                let appendedData = appendedModel.data
-                let appendedUsers = appendedModel.includes.users
-                for tweet in appendedData{
-                    model.includes.tweets?.append(tweet)
-                }
-                for user in appendedUsers {
-                    model.includes.users.append(user)
-                }
-                
-                getHome(using: model)
-            }catch{
+            var userResponse: (TwitterUser?,Int) = (nil, 0)
+            do {
+                userResponse = try await handler.fetchMyUser()
+            } catch{
                 print(error)
             }
+
+            print("Got User Data")
+            guard userResponse.1 == 200 else {
+                presentAlert(with: userResponse.1)
+                return
+            }
+            guard let user = userResponse.0 else {return}
+            guard var model = try await handler.getCurrentUserTimeline(currentUserID: user.data.id).0 else {return}
+            includedTweetsWithQuotesIDs = ""
+            guard let includedTweets = model.includes.tweets else {return}
+            for tweet in includedTweets {
+                if let tweetReference = tweet.referenced_tweets?[0], tweetReference.type == "quoted" {
+                    (includedTweetsWithQuotesIDs.isEmpty) ? includedTweetsWithQuotesIDs.append(tweetReference.id) : includedTweetsWithQuotesIDs.append(",\(tweetReference.id)")
+                }
+            }
+            guard let appendedModel = try await handler.getMultipleTweets(ids: includedTweetsWithQuotesIDs).0 else {return}
+            let appendedData = appendedModel.data
+            let appendedUsers = appendedModel.includes.users
+            for tweet in appendedData{
+                model.includes.tweets?.append(tweet)
+            }
+            for user in appendedUsers {
+                model.includes.users.append(user)
+            }
+            getHome(using: model)
         }
     }
     

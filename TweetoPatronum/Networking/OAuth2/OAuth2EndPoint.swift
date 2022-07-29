@@ -77,7 +77,8 @@ enum OAuth2EndPoint {
                     "client_id":clientID]
         case .revoke(let clientID, let accessToken):
             return ["token":accessToken,
-                    "client_id":clientID]
+                    "client_id":clientID,
+                    "token_type_hint":"access_token"]
         }
     }
     var request: URLRequest{

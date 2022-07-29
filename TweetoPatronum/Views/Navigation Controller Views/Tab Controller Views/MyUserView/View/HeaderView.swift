@@ -13,6 +13,7 @@ class HeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var userDisplayName: UILabel!
     @IBOutlet weak var userHandle: UILabel!
     @IBOutlet weak var userBio: UILabel!
+    @IBOutlet weak var tweetsQuery: UIButton!
     
     override class func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +25,14 @@ class HeaderView: UITableViewHeaderFooterView {
     static func nib() -> UINib {
         return UINib(nibName: "HeaderView", bundle: nil)
     }
+    
+    @IBAction func queryButton(_ sender: UIButton) {
+        sender.superview?.subviews.forEach({ view in
+            let button = view as! UIButton
+            button.isSelected = false
+        })
+        sender.isSelected = true
+    }
+    
 
 }

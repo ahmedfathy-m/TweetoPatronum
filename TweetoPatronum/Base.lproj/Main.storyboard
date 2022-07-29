@@ -27,7 +27,7 @@
         <!--Home-->
         <scene sceneID="lDH-UM-d0a">
             <objects>
-                <tableViewController id="QV9-iJ-drl" customClass="TimelineViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TimelineViewController" id="QV9-iJ-drl" customClass="TimelineViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="exo-My-Xh5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,7 +86,7 @@
         <!--Twitter Tab Controller-->
         <scene sceneID="4Vq-1z-Obq">
             <objects>
-                <tabBarController id="0Zx-O2-lxe" customClass="TwitterTabController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TwitterTabController" id="0Zx-O2-lxe" customClass="TwitterTabController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="3x8-Kq-2Ye"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0zI-Au-J92">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -124,7 +124,7 @@
         <!--Auth View Controller-->
         <scene sceneID="4eJ-T9-QLr">
             <objects>
-                <viewController id="hYL-L0-wtr" customClass="AuthViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="hYL-L0-wtr" customClass="AuthViewController" customModule="TweetoPatronum" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RXC-Pg-9my">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +185,6 @@
                     <connections>
                         <outlet property="AuthWebView" destination="Zw3-Ba-wKL" id="i9l-bZ-Ycr"/>
                         <segue destination="OhP-It-IcL" kind="unwind" identifier="returnToLogin" unwindAction="unwindToMenuWithSegue:" id="5FC-9P-TEY"/>
-                        <segue destination="0Zx-O2-lxe" kind="show" identifier="goToApp" id="C3y-dO-PUz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3PY-Oy-BOP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
