@@ -19,6 +19,7 @@ enum TwitterEndPoint {
     case search(_ query: TwitterQuery)
     case fetchUserTweets(_ id:String)
     case fetchUserHeader(_ id:String)
+    case fetchUserMentions(_ id:String)
     
     private var targetURL:URLComponents? {
         switch self {
@@ -38,6 +39,8 @@ enum TwitterEndPoint {
             return URLComponents(string: "\(baseURL)/users/\(id)/tweets")
         case .fetchUserHeader:
             return URLComponents(string: "https://api.twitter.com/1.1/users/profile_banner.json")
+        case .fetchUserMentions(let id):
+            return URLComponents(string: "\(baseURL)/users/\(id)/mentions")
         }
     }
     
@@ -61,6 +64,8 @@ enum TwitterEndPoint {
             var userTweetParam = multiTweetParams
             userTweetParam["exclude"] = "replies"
             return userTweetParam
+        case .fetchUserMentions:
+            return multiTweetParams
         case .fetchUserHeader(let id):
             return ["user_id":id]
         }

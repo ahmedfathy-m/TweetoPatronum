@@ -5,7 +5,6 @@
 //  Created by Ahmed Fathy on 11/06/2022.
 //
 
-import Foundation
 import UIKit
 
 class TwitterHandler {
@@ -14,6 +13,8 @@ class TwitterHandler {
     init(_ auth:OAuth2) {
         oauth = auth
     }
+    
+    var userID = String()
     //MARK: - Get User Using ID
     func fetchUser(id:String) async throws -> (TwitterUser?,Int) {
         let endpoint : TwitterEndPoint = .fetchUser(id)
@@ -50,18 +51,25 @@ class TwitterHandler {
         return try await handleResponse(from: endPoint)
     }
     
-    //MARK: - Fetch User Tweets
+    //MARK: - Fetch User Header Image
     func getUserBanner(using id:String) async throws->(ProfileHeader?,Int){
         //Requires OAuth1.0
         let endPoint: TwitterEndPoint = .fetchUserHeader(id)
         return try await handleResponse(from: endPoint)
     }
     
+    //MARK: - Fetch User Mentions
+    func getIncomingMentions(using id:String) async throws->(Timeline?,Int){
+        //Requires OAuth1.0
+        let endPoint: TwitterEndPoint = .fetchUserMentions(id)
+        return try await handleResponse(from: endPoint)
+    }
+    
     
     func handleResponse<T:Codable>(from endPoint:TwitterEndPoint) async throws->(T?,statusCode: Int){
-        print("I tried")
         var data: T? = nil
         var request = endPoint.request
+        request.cachePolicy = .returnCacheDataElseLoad
         try await oauth.authorizeRequest(request: &request)
         let response = try await URLSession.shared.data(for: request)
         guard let httpResponse = response.1 as? HTTPURLResponse else {

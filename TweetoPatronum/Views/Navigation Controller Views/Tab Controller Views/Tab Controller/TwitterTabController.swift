@@ -25,7 +25,6 @@ class TwitterTabController: UITabBarController {
         self.navigationItem.hidesBackButton = true
         title = "Tweeto Patronum"
         let logoutButton = UIButton()
-        //        logoutButton.setTitle("Log Out", for: .normal)
         logoutButton.setImage(UIImage(systemName: "rectangle.portrait.and.arrow.right"), for: .normal)
         logoutButton.setTitleColor(.black, for: .normal)
         logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)

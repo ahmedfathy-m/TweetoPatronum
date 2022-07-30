@@ -81,23 +81,23 @@ enum OAuth2EndPoint {
                     "token_type_hint":"access_token"]
         }
     }
-    var request: URLRequest{
+    var request: URLRequest?{
         switch self {
         case .authorize:
-            return createRequest(targetURL, method: .GET, query: queryParam)
+            return try? createRequest(targetURL, method: .GET, query: queryParam)
         case .access:
-            return createRequest(targetURL, method: .POST, headerParams, bodyParams)
+            return try? createRequest(targetURL, method: .POST, headerParams, bodyParams)
         case .refresh:
-            return createRequest(targetURL, method: .POST, headerParams, bodyParams)
+            return try? createRequest(targetURL, method: .POST, headerParams, bodyParams)
         case .revoke:
-            return createRequest(targetURL, method: .POST, headerParams, bodyParams)
+            return try? createRequest(targetURL, method: .POST, headerParams, bodyParams)
         }
     }
     
-    private func createRequest(_ targetURL: URLComponents?, method:HTTPMethod, _ header: [String:String] = [:],query queryParams: [String:Any] = [:],_ bodyParams: [String:String] = [:]) -> URLRequest{
+    private func createRequest (_ targetURL: URLComponents?, method:HTTPMethod, _ header: [String:String] = [:],query queryParams: [String:Any] = [:],_ bodyParams: [String:String] = [:]) throws -> URLRequest{
         //Building the URL
         guard var targetURL = targetURL else {
-            fatalError("Couldn't Unwrap URL with components")
+            throw OAuth2Error.urlError
         }
         var queryItems = [URLQueryItem]()
         queryParams.forEach { (key: String, value: Any) in
@@ -107,7 +107,7 @@ enum OAuth2EndPoint {
         targetURL.queryItems = queryItems
         
         guard let url = targetURL.url else {
-            fatalError("Couldn't Build Final URL")
+            throw OAuth2Error.urlError
         }
         
         //Creating the Request

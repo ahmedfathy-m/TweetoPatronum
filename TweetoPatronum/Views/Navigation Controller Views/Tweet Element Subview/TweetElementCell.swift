@@ -58,37 +58,5 @@ class TweetElementCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: "TweetElementCell", bundle: nil)
     }
-    
-    var tweetModel:TweetViewModel?{
-        didSet{
-            authorName.text = tweetModel?.displayedAuthor
-            authorHandle.text = tweetModel?.displayedHandle
-            tweetText.text = tweetModel?.displayedTweet
-            
-            authorAvi.setImage(UIImage(named: "user"), for: .normal)
-            authorAvi.downloadImage(from: (tweetModel?.displayedAvatar)!)
-            
-            isAuthorVerified.isHidden = !((tweetModel?.isDisplayedAuthorVerified)!)
-            isAuthorPrivate.isHidden = !((tweetModel?.isDisplayedAuthorPrivate)!)
-            
-            retweetButton.isEnabled = !((tweetModel?.isDisplayedAuthorPrivate)!)
-
-            likeButton.setTitle(tweetModel?.likeCount?.kFormattedString, for: .normal)
-            retweetButton.setTitle(tweetModel?.retweetCount?.kFormattedString, for: .normal)
-            replyButton.setTitle(tweetModel?.replyCount?.kFormattedString, for: .normal)
-            
-            quoteView.isHidden = !((tweetModel?.doesContainQuote)!)
-            quotedName.text = tweetModel?.quotedAuthor
-            quotedHandle.text = tweetModel?.quotedHandle
-            quotedText.text = tweetModel?.quotedTweet
-            quotedAvi.downloadImage(from: (tweetModel?.quotedAvatar) ?? "" )
-            isQuotedVerified.isHidden = !((tweetModel?.isQuotedAuthorVerified)!)
-            isQuotedPrivate.isHidden = !((tweetModel?.isQuotedAuthorPrivate)!)
-            
-            tweetText.textAlignment = tweetModel!.tweetAlignment
-            retweetedByLabel.isHidden = !((tweetModel?.isDisplayedTweetRetweeted)!)
-            retweetedByLabel.text = "Retweeted by \(tweetModel?.retweetedBy ?? "")"
-        }
-    }
 }
 

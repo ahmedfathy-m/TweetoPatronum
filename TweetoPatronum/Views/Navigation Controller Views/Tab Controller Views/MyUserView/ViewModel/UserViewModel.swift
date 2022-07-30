@@ -49,7 +49,7 @@ class UserViewModel {
         }
     }
     
-    func fetchQueriedTweets() async throws{
+    func fetchMyUserTweets() async throws{
         if let myUserID = user?.data.id {
             displayedTweets = try await handler.fetchUserTweets(using: myUserID).0
         }

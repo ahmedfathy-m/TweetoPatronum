@@ -17,21 +17,15 @@ class TimelineViewController: UITableViewController {
         return TimelineViewModel(handler: tabbar.handler)
     }()
     
-    func initViewModel(){
-        viewModel.getTimeline()
-        didUpdateDataModel()
-    }
-    
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // TableViewCell Init
         tableView.register(TweetElementCell.nib(), forCellReuseIdentifier: TweetElementCell.identifier)
         initViewModel()
         viewModel.delegate = self
-        
 
-        
+        //Refresh Control
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(ReloadTimeline), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -45,29 +39,7 @@ class TimelineViewController: UITableViewController {
             refreshControl.endRefreshing()
         }
     }
-    
-    //MARK: - TableView Data Source Functions
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tweetModels.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TweetElementCell.identifier, for: indexPath) as! TweetElementCell
-        cell.tweetModel = viewModel.getTweetModel(at: indexPath)
-        return cell
-    }
-    //MARK: - TableView Delegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
 }
 
-extension TimelineViewController: ViewModelDelegate{
-    func didUpdateDataModel() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
+
 

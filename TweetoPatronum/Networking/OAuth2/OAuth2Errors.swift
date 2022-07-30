@@ -9,4 +9,7 @@ import Foundation
 
 enum OAuth2Error: String, Error{
     case authError = "Wrong Token Used"
+    case noResponse
+    case noTokenFound
+    case urlError
 }

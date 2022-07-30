@@ -195,18 +195,37 @@
         <!--Notifications-->
         <scene sceneID="0vy-9K-aaH">
             <objects>
-                <viewController id="eeX-W1-Qtg" userLabel="Notifications" sceneMemberID="viewController">
+                <viewController id="eeX-W1-Qtg" userLabel="Notifications" customClass="MentionsViewController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pf6-df-kEF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cWD-38-IUB">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="eeX-W1-Qtg" id="Pte-wL-cGB"/>
+                                    <outlet property="delegate" destination="eeX-W1-Qtg" id="80Z-bq-RVV"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="uc2-aT-JOD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cWD-38-IUB" firstAttribute="bottom" secondItem="uc2-aT-JOD" secondAttribute="bottom" id="Jqx-bt-6jm"/>
+                            <constraint firstItem="cWD-38-IUB" firstAttribute="leading" secondItem="uc2-aT-JOD" secondAttribute="leading" id="dRC-Bk-MFT"/>
+                            <constraint firstItem="cWD-38-IUB" firstAttribute="trailing" secondItem="uc2-aT-JOD" secondAttribute="trailing" id="mfa-p1-xlu"/>
+                            <constraint firstItem="cWD-38-IUB" firstAttribute="top" secondItem="Pf6-df-kEF" secondAttribute="top" id="qHD-Nn-if2"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Notifications" image="bell.fill" catalog="system" id="fpq-bq-8si"/>
+                    <tabBarItem key="tabBarItem" title="Mentions" image="bell.fill" catalog="system" id="fpq-bq-8si"/>
+                    <connections>
+                        <outlet property="tableView" destination="cWD-38-IUB" id="w5s-o9-3Xs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kcm-tT-FNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2571" y="806"/>
+            <point key="canvasLocation" x="2569.5652173913045" y="805.58035714285711"/>
         </scene>
     </scenes>
     <resources>
