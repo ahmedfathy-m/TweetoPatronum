@@ -105,7 +105,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7402214F289D968100854002 /* Custom Views */ = {
+		7402214F289D968100854002 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				749FEFB32876428E0075329F /* Tweet Element Subview */,
@@ -113,10 +113,10 @@
 				74F694FB2891A55200FE86AD /* ViewModelDelegate.swift */,
 				74A72F00289565C100E173AE /* ViewModelProtocol.swift */,
 			);
-			path = "Custom Views";
+			path = Custom;
 			sourceTree = "<group>";
 		};
-		74022150289D96FF00854002 /* ViewModels */ = {
+		74022150289D96FF00854002 /* Multi-Cell View Models */ = {
 			isa = PBXGroup;
 			children = (
 				74022155289D973300854002 /* TimelineViewModel.swift */,
@@ -124,7 +124,26 @@
 				74022153289D972700854002 /* SearchViewModel.swift */,
 				74022157289D974400854002 /* UserViewModel.swift */,
 			);
-			path = ViewModels;
+			path = "Multi-Cell View Models";
+			sourceTree = "<group>";
+		};
+		74022159289D97B700854002 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				74AB71A1289C1F3700B31A89 /* Auth View Controllers (Welcome & Login) */,
+				7402215A289D97CE00854002 /* Multi-Cell View (Reusable) */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7402215A289D97CE00854002 /* Multi-Cell View (Reusable) */ = {
+			isa = PBXGroup;
+			children = (
+				74022150289D96FF00854002 /* Multi-Cell View Models */,
+				74B0DB6B289AE23C0015C956 /* MultiCellViewController.swift */,
+				74B0DB70289AE2B00015C956 /* TableViewHandler.swift */,
+			);
+			path = "Multi-Cell View (Reusable)";
 			sourceTree = "<group>";
 		};
 		740A4C9A285396720093F019 = {
@@ -207,10 +226,8 @@
 		74A59926288B570F00C3C0C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				74022150289D96FF00854002 /* ViewModels */,
-				74AB71A1289C1F3700B31A89 /* AuthViewControllers */,
-				74B0DB6F289AE26E0015C956 /* MultiCellViewController */,
-				7402214F289D968100854002 /* Custom Views */,
+				74022159289D97B700854002 /* Main */,
+				7402214F289D968100854002 /* Custom */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,13 +251,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		74AB71A1289C1F3700B31A89 /* AuthViewControllers */ = {
+		74AB71A1289C1F3700B31A89 /* Auth View Controllers (Welcome & Login) */ = {
 			isa = PBXGroup;
 			children = (
 				74AB71A6289C321100B31A89 /* WelcomeViewController */,
 				74AB71A7289C321A00B31A89 /* AuthWebView */,
 			);
-			path = AuthViewControllers;
+			path = "Auth View Controllers (Welcome & Login)";
 			sourceTree = "<group>";
 		};
 		74AB71A6289C321100B31A89 /* WelcomeViewController */ = {
@@ -258,15 +275,6 @@
 				74AB71A8289C323E00B31A89 /* AuthViewModel.swift */,
 			);
 			path = AuthWebView;
-			sourceTree = "<group>";
-		};
-		74B0DB6F289AE26E0015C956 /* MultiCellViewController */ = {
-			isa = PBXGroup;
-			children = (
-				74B0DB6B289AE23C0015C956 /* MultiCellViewController.swift */,
-				74B0DB70289AE2B00015C956 /* TableViewHandler.swift */,
-			);
-			path = MultiCellViewController;
 			sourceTree = "<group>";
 		};
 		74BE4D0128679198001602DB /* Networking */ = {
