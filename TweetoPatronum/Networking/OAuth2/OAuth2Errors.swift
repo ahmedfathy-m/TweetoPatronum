@@ -12,4 +12,5 @@ enum OAuth2Error: String, Error{
     case noResponse
     case noTokenFound
     case urlError
+    case noAccessToken
 }

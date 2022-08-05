@@ -119,7 +119,7 @@ enum TwitterEndPoint {
 extension TwitterEndPoint {
     private var multiTweetParams: [String:Any] {
         return ["expansions":"author_id,attachments.media_keys,referenced_tweets.id.author_id,referenced_tweets.id",
-                "tweet.fields":"public_metrics,referenced_tweets,lang",
+                "tweet.fields":"public_metrics,referenced_tweets,lang,entities",
                 "user.fields":"profile_image_url,verified,protected",
                 "media.fields":"preview_image_url,url"]
     }

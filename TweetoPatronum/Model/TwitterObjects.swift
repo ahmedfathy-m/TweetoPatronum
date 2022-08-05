@@ -68,12 +68,49 @@ struct Attachments: Codable {
 
 struct TweetData: Codable{
     let id: String
-    let author_id: String?
+    let authorID: String?
     let text: String
     let lang: String
-    let public_metrics:TweetMetrics
+    let publicMetrics:TweetMetrics
     let attachments: Attachments?
-    let referenced_tweets: [ReferncedTweet]?
+    let referencedTweets: [ReferncedTweet]?
+    let entities: Entities?
+    
+    var computedText: NSMutableAttributedString{
+        let attributedText:NSMutableAttributedString = NSMutableAttributedString(string: text)
+        if let urls = entities?.urls {
+            urls.forEach { url in
+                if attributedText.mutableString.contains(url.url) {
+                    let range = (attributedText.mutableString as NSString).range(of: url.url)
+                    attributedText.addAttribute(.link, value: url.expanded_url, range: range)
+                    attributedText.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: range)
+                    attributedText.replaceCharacters(in: range, with: url.expanded_url)
+                }
+            }
+        }
+        
+        if let mentions = entities?.mentions{
+            mentions.forEach { mention in
+                let range = (attributedText.mutableString as NSString).range(of: "@\(mention.username)")
+                attributedText.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: range)
+            }
+        }
+        
+        if let hashtags = entities?.hashtags{
+            hashtags.forEach { hashtag in
+                let range = (attributedText.mutableString as NSString).range(of: "#\(hashtag.tag)")
+                attributedText.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: range)
+            }
+        }
+        return attributedText
+    }
+    
+    enum CodingKeys:String,CodingKey{
+        case id,text,lang,attachments,entities
+        case publicMetrics = "public_metrics"
+        case referencedTweets = "referenced_tweets"
+        case authorID = "author_id"
+    }
 }
 
 struct ReferncedTweet:Codable {
@@ -93,5 +130,47 @@ struct TwitterHeaderImage:Codable {
     let h:Int
     let w:Int
     let url:String
+}
+
+struct Entities: Codable {
+    let urls: [URLEntitiy]?
+    let mentions: [MentionEntity]?
+    let hashtags: [HashTagEntity]?
+}
+
+struct URLEntitiy: Codable{
+    let start:Int
+    let end:Int
+    let url:String
+    let expanded_url:String
+    let display_url:String
+    let unwound_url:String?
+    
+    var length: Int{
+        return end - start
+    }
+    
+    enum CodingKeys:String,CodingKey{
+        case start,end,url,expanded_url,display_url,unwound_url
+    }
+}
+
+struct MentionEntity: Codable{
+    let start:Int
+    let end:Int
+    let username:String
+    
+    var length: Int{
+        return end - start
+    }
+    enum CodingKeys:String,CodingKey{
+        case start,end,username
+    }
+}
+
+struct HashTagEntity: Codable{
+    let start:Int
+    let end:Int
+    let tag:String
 }
 

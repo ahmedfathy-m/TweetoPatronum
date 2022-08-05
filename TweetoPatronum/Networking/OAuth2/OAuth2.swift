@@ -17,6 +17,7 @@ class OAuth2 {
     fileprivate var validUntil: Int? = nil
 
     init(id: String, callback: String) {
+        print("Oauth initialized")
         self.clientID = id
         self.callbackURL = callback
     }
@@ -35,6 +36,7 @@ class OAuth2 {
     }
     
     func refreshAccessToken() async throws {
+        print("refresh: \(oAuthToken?.refreshToken)")
         guard let refreshToken = oAuthToken?.refreshToken else {
             throw OAuth2Error.noTokenFound
         }
@@ -62,13 +64,13 @@ class OAuth2 {
         //Reminder: add check for expiry to trigger refresh Token
         if Int(Date.now.timeIntervalSince1970) < validUntil ?? 0 {
             guard let accessToken = oAuthToken?.accessToken else {
-                throw OAuth2Error.noTokenFound
+                throw OAuth2Error.noAccessToken
             }
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         } else {
             try await refreshAccessToken()
             guard let accessToken = oAuthToken?.accessToken else {
-                throw OAuth2Error.noTokenFound
+                throw OAuth2Error.noAccessToken
             }
             request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         }

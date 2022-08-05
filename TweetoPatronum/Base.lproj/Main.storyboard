@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nZ9-21-4CG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -8,21 +8,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Messages-->
+        <!--Search-->
         <scene sceneID="DhI-Ai-IxG">
             <objects>
-                <viewController id="M59-Kn-8qM" userLabel="Messages" sceneMemberID="viewController">
+                <viewController id="M59-Kn-8qM" userLabel="Search" customClass="SearchViewController" customModule="TweetoPatronum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VQl-d8-acA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="f82-oc-uGf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Jkp-Or-Wt3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="f82-oc-uGf" firstAttribute="trailing" secondItem="Jkp-Or-Wt3" secondAttribute="trailing" id="RjH-Lo-yIG"/>
+                            <constraint firstAttribute="bottom" secondItem="f82-oc-uGf" secondAttribute="bottom" id="Tfh-9R-hix"/>
+                            <constraint firstItem="f82-oc-uGf" firstAttribute="top" secondItem="VQl-d8-acA" secondAttribute="top" id="nmg-dD-kxs"/>
+                            <constraint firstItem="f82-oc-uGf" firstAttribute="leading" secondItem="Jkp-Or-Wt3" secondAttribute="leading" id="v3z-KS-PWO"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Direct Messages" image="message.fill" catalog="system" id="9Qj-0a-RBe"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="9Qj-0a-RBe"/>
+                    <connections>
+                        <outlet property="tableView" destination="f82-oc-uGf" id="USp-lD-aNT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lz2-oH-fNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839" y="806"/>
+            <point key="canvasLocation" x="1837.68115942029" y="805.58035714285711"/>
         </scene>
         <!--Home-->
         <scene sceneID="lDH-UM-d0a">
@@ -135,7 +150,9 @@
                                 <state key="normal" image="loginTwitter">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
-                                <buttonConfiguration key="configuration" style="tinted" title="Sign in with Twitter"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign in with Twitter">
+                                    <backgroundConfiguration key="background" cornerRadius="17"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="loginAction:" destination="hYL-L0-wtr" eventType="touchUpInside" id="SS2-I5-sqz"/>
                                     <segue destination="gqq-Qa-XaY" kind="show" id="OL1-J0-a4P"/>
@@ -201,7 +218,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cWD-38-IUB">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="eeX-W1-Qtg" id="Pte-wL-cGB"/>
@@ -212,7 +229,7 @@
                         <viewLayoutGuide key="safeArea" id="uc2-aT-JOD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cWD-38-IUB" firstAttribute="bottom" secondItem="uc2-aT-JOD" secondAttribute="bottom" id="Jqx-bt-6jm"/>
+                            <constraint firstAttribute="bottom" secondItem="cWD-38-IUB" secondAttribute="bottom" id="bkn-sr-0oX"/>
                             <constraint firstItem="cWD-38-IUB" firstAttribute="leading" secondItem="uc2-aT-JOD" secondAttribute="leading" id="dRC-Bk-MFT"/>
                             <constraint firstItem="cWD-38-IUB" firstAttribute="trailing" secondItem="uc2-aT-JOD" secondAttribute="trailing" id="mfa-p1-xlu"/>
                             <constraint firstItem="cWD-38-IUB" firstAttribute="top" secondItem="Pf6-df-kEF" secondAttribute="top" id="qHD-Nn-if2"/>
@@ -232,7 +249,6 @@
         <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="loginTwitter" width="158" height="28"/>
-        <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
